@@ -4,6 +4,6 @@ hi everyone!
 
 ## subtitle
 
-    - test1
-    - bullet 2
-    - something
+   - test1
+   - bullet 2
+   - something
