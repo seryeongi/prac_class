@@ -8,4 +8,3 @@ hi everyone!
    - bullet 2
    - something
 
-![picture](https://valuefactory.tistory.com/65/images.jpg)
