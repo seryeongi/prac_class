@@ -38,6 +38,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-6PEulah6riS"
+      },
+      "source": [
+        "GPU 확인"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "zy4r3XpOzqTU",
@@ -77,6 +86,15 @@
           ],
           "name": "stdout"
         }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "2phxZ8m56vvD"
+      },
+      "source": [
+        "tensorflow 불러오고 버전 확인"
       ]
     },
     {
@@ -141,6 +159,16 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cwGcq7EB60At"
+      },
+      "source": [
+        "mnist 데이터 불러오기\n",
+        "train세트와 test세트로 나누기"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "fb1D2wTSzmNw"
@@ -176,6 +204,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ORzro8dm66Fz"
+      },
+      "source": [
+        "train의 이미지 형상은 (60000,28,28)"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "NJF-qDqlzmNz",
@@ -201,6 +238,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4AW-Bp7i7EW1"
+      },
+      "source": [
+        "train labels의 길이는 60000"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "bG6sHcuezmN0",
@@ -223,6 +269,16 @@
           },
           "execution_count": 4
         }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qT8mymZh7HSY"
+      },
+      "source": [
+        "train_labels 보기\n",
+        "arrary 형태"
       ]
     },
     {
@@ -260,6 +316,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "bGSD3cHo7Luc"
+      },
+      "source": [
+        "test images의 형상은 (10000,28,28)"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "fX8Pb2cwzmN3",
@@ -285,6 +350,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "spokjcdb7PlW"
+      },
+      "source": [
+        "test_labels의 길이는 10000"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "YQdUMKYkzmN4",
@@ -307,6 +381,15 @@
           },
           "execution_count": 7
         }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "kyY-BG6o7R_H"
+      },
+      "source": [
+        "test_labels 보기"
       ]
     },
     {
@@ -345,6 +428,18 @@
         "will verify if these predictions match the labels from `test_labels`.\n",
         "\n",
         "Let's build our network -- again, remember that you aren't supposed to understand everything about this example just yet."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "spExY8zS7UA_"
+      },
+      "source": [
+        "딥러닝 모델  \n",
+        "layer가 2개  \n",
+        "1번째 layer(hidden_layer) : input 형상이 (784,), 활성화 함수는 relu 사용, 출력층의 뉴런수는 512   \n",
+        "2번째 layer(output_layer) : 활성화 함수 softmax 사용, 출력층의 뉴런 수는 10(0~9)  "
       ]
     },
     {
@@ -392,6 +487,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xoMzByiN7-gz"
+      },
+      "source": [
+        "최적화는 rmsprop로, 손실함수는 crossentroy 사용"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "GxdQGEjBzmN_"
@@ -414,6 +518,18 @@
         "Before training, we will preprocess our data by reshaping it into the shape that the network expects, and scaling it so that all values are in \n",
         "the `[0, 1]` interval. Previously, our training images for instance were stored in an array of shape `(60000, 28, 28)` of type `uint8` with \n",
         "values in the `[0, 255]` interval. We transform it into a `float32` array of shape `(60000, 28 * 28)` with values between 0 and 1."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1PYuHjDE_vDG"
+      },
+      "source": [
+        "train images를 (60000,784)로 재배열시킨 후 형변환한다.  \n",
+        "[0,255]의 값이므로 255로 나눠 [0,1]사이의 값으로 정규화시켜준다.  \n",
+        "test images는 (10000,784)로 재배열시킨 후 형변환한다.  \n",
+        "[0,255]의 값이므로 255로 나눠 [0,1]사이의 값으로 정규화시켜준다.  \n"
       ]
     },
     {
@@ -441,6 +557,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "DvmzCs4OAY4C"
+      },
+      "source": [
+        "원-핫 인코딩"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "rCob4aGRzmOE"
@@ -462,6 +587,16 @@
       "source": [
         "We are now ready to train our network, which in Keras is done via a call to the `fit` method of the network: \n",
         "we \"fit\" the model to its training data."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qD6myfEhAghd"
+      },
+      "source": [
+        "학습시키기  \n",
+        "에폭은 5, 배치 사이즈는 128로."
       ]
     },
     {
@@ -519,6 +654,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "u34ac-lUAocc"
+      },
+      "source": [
+        "평가하기"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "N3LArxQjzmOJ",
@@ -536,6 +680,15 @@
           ],
           "name": "stdout"
         }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "O1bnFZNEAq33"
+      },
+      "source": [
+        "test의 정확도는 98.15%"
       ]
     },
     {
