@@ -1,7 +1,5 @@
 # prac_class for 2021 statistical class
 
-hi everyone!
-
 ## subtitle
 
    - test1
